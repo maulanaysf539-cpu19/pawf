@@ -15,8 +15,8 @@ class Post extends BaseController
     $post = new PostModel();
 
     /*
- siapkan data untuk dikirim ke view dengan nama $posts
- dan isi datanya dengan post yang sudah terbit
+     siapkan data untuk dikirim ke view dengan nama $posts
+     dan isi datanya dengan post yang sudah terbit
     */
     $data['posts'] = $post->where('status', 'published')->findAll();
 
