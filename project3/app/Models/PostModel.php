@@ -9,7 +9,7 @@ class PostModel extends Model
     protected $table            = 'posts';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $allowedFields    = ['title', 'content', 'status', 'author', 'slug'];
+    protected $allowedFields    = ['title', 'content', 'status', 'author', 'slug','post_image','post_views'];
 
     // protected $useAutoIncrement = true;
     // protected $returnType       = 'array';

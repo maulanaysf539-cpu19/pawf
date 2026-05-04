@@ -31,7 +31,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('admin/setting') ?>">Setting</a>
                     </li>
-                    <!-- update nav -->
                     <li class="nav-item">
                         <?php if (logged_in()) : ?>
                             <a class="nav-link" href="<?= base_url('logout') ?>">Logout</a>
@@ -52,17 +51,38 @@
     
     <!-- update post -->
     <div class="container">
-        <form action="" method="post" id="text-editor">
+        <!-- 1. Tambahkan enctype="multipart/form-data" agar bisa kirim file gambar -->
+        <form action="" method="post" id="text-editor" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $post['id'] ?>" />
-            <div class="form-group mb-2">
+            
+            <div class="form-group mb-3">
                 <label for="title">Title</label>
                 <input type="text" name="title" class="form-control"
                     placeholder="Post title" value="<?= $post['title'] ?>" required>
             </div>
-            <div class="form-group mb-2">
+
+            <!-- 2. Tambahkan Input File untuk Gambar -->
+            <div class="form-group mb-3">
+                <label for="post_image">Change Thumbnail</label>
+                <input type="file" name="post_image" class="form-control" accept="image/*">
+                
+                <!-- Tampilkan gambar lama jika ada -->
+                <?php if (!empty($post['post_image'])): ?>
+                    <div class="mt-2">
+                        <small class="text-muted">Current image:</small><br>
+                        <img src="<?= base_url('uploads/' . $post['post_image']) ?>" 
+                             alt="Current Thumbnail" 
+                             style="max-width: 150px;" class="img-thumbnail mt-1">
+                    </div>
+                <?php endif; ?>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="content">Content</label>
                 <textarea name="content" class="form-control" cols="30" rows="10"
                         placeholder="Write a great post!"><?= $post['content'] ?></textarea>
             </div>
+
             <div class="form-group mb-2">
                 <button type="submit" name="status" value="published"
                         class="btn btn-primary">Publish</button>
